@@ -17,7 +17,7 @@ public class Main {
         //mLectura("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
         modoAcceso("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "Desventaja.txt");
         //mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Desventaja.txt");
+        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
         //mArchivos("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
         recur(new File("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas"));
 
@@ -32,6 +32,7 @@ public class Main {
 
         if (file.isDirectory()) {
             return true;
+
         } else {
             return false;
         }
@@ -58,8 +59,10 @@ public class Main {
     public static void crearDirectorio(String ruta) {
         File archivo = new File(ruta);
         boolean crea = archivo.mkdir();
+        ruta=archivo.getPath();
         if (crea) {
             System.out.println("Creado existosamente");
+            eDirectoerio(ruta);
         } else {
             System.out.println("No se pudo generar");
         }
@@ -90,7 +93,7 @@ public class Main {
     }
 
     public static void Tamaño(String nomeDire, String nomeFile) {
-        long tamañoArchivo = 0;
+        long tamañoArchivo;
         File archivo = new File(nomeDire, nomeFile);
         tamañoArchivo = archivo.length();
 
@@ -99,9 +102,9 @@ public class Main {
 
     public static void mLectura(String nomeDire, String nomeFile)  {
         File archivo = new File(nomeDire, nomeFile);
-        boolean correcto = archivo.setReadable(true);
+        boolean correcto = archivo.setReadOnly();
         if (correcto) {
-            System.out.println("Se puede leer");
+            System.out.println(" Este archivo es solo lectura");
         } else {
             System.out.println("No se puede leer");
         }
@@ -111,7 +114,7 @@ public class Main {
         File archivo = new File(nomeDire, nomeFile);
         boolean escribir = archivo.setWritable(true);
         if (escribir) {
-            System.out.println("se puede escribiR");
+            System.out.println("Se puede volver a escribir");
         }
     }
 
@@ -125,11 +128,13 @@ public class Main {
             System.out.println("No existe el archivo");
         }
     }
-    public static void mBorrarDire(String nomeDire, String nomeFile) {
+    public static void mBorrarDire(String nomeDire) {
         File archivo= new File(nomeDire);
         boolean borrado=archivo.delete();
-        if (borrado){
+        if (borrado) {
             System.out.println("Borrado");
+        }else if(eDirectoerio(archivo.getPath())){
+            archivo.deleteOnExit();
         }else{
             System.out.println("No existe el archivo");
         }
