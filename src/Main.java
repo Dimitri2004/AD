@@ -1,6 +1,8 @@
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.io.File;
+import java.io.IOException;
+
 public class Main {
     public static void main(String[] args) {
         eDirectoerio("/home/dam/Escritorio/AD");
@@ -50,10 +52,46 @@ public class Main {
         }
     }
 
-    public static void crearFichero(String nomeDire,String nomeFile ){
-        File archivo=new File(nomeDire);
+    public static void crearFichero(String nomeDire,String nomeFile ) throws IOException {
+        File archivo=new File(nomeDire,nomeFile);
+        if(archivo.createNewFile()){
+            System.out.println("Creado exitosamente");
+        }else {
+            System.out.println("Fallo en crear archivo");
+        }
 
     }
+
+    public static void modoAcceso(String nomeDire,String nomeFile ) throws IOException {
+        File archivo=new File(nomeDire,nomeFile);
+        if(archivo.canWrite()){
+            System.out.println("Es posible escribir");
+        }else {
+            System.out.println("No es posible escribir");
+        }
+        if (archivo.canRead()){
+            System.out.println("Esrte archivo se puede ver");
+        }else{
+            System.out.println("Este archivo no se puede ver");
+        }
+    }
+    public static void Tamaño(String nomeDire,String nomeFile ) {
+        long tamañoArchivo = 0;
+        File archivo=new File(nomeDire,nomeFile);
+        tamañoArchivo = archivo.length();
+
+        System.out.println("Ocupara : "+tamañoArchivo+" bites");
+    }
+    public static void mLectura(String nomeDire,String nomeFile){
+        File archivo = new File(nomeDire,nomeFile);
+        boolean correcto = archivo.setReadOnly();
+        if (correcto){
+            System.out.println("Se puede leer");
+        }else{
+            System.out.println("No se puede leer");
+        }
+    }
+
 
 
 }
