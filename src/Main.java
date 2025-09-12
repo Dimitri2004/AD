@@ -2,21 +2,24 @@
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        eDirectoerio("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
-        eFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
-        crearDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
-        crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Desventaja.txt");
-        mEscribir("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        mLectura("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        modoAcceso("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
+        eDirectoerio("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
+        //eFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
+        crearDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
+        crearDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
+        crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "Desventaja.txt");
+        crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "advantage.txt");
+        //mEscribir("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
+        //mLectura("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
+        modoAcceso("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "Desventaja.txt");
         //mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        mArchivos("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
+        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Desventaja.txt");
+        //mArchivos("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
+        recur(new File("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas"));
 
     }
 
@@ -136,6 +139,22 @@ public class Main {
 
         for (String s : Objects.requireNonNull(archivo.list())) {
             System.out.println(s);
+        }
+
+    }
+    public static void  recur(File archivo){
+        String[] a= archivo.list();
+        if(a!=null){
+            File b;
+            System.out.println(Arrays.toString(a)+" ");
+            for (String f:a){
+                b=new File(archivo.getParent(),f);
+
+                    if (b.isDirectory()){
+                        System.out.println(f);
+                        recur(b);
+                    }
+            }
         }
     }
 }
