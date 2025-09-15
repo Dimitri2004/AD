@@ -4,7 +4,7 @@ public class Parte2 {
     public static void main(String[] args) throws IOException {
         //Ejercici 1
         Main.crearDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir");
-        Main.eDirectoerio("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir");
+        Main.eDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir");
         //Ejercicio2
         Main.crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir","Products1.txt");
         Main.eFichero("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir");
@@ -27,8 +27,9 @@ public class Parte2 {
 
         //Ejercicio 8
         Main.mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir","Products1.txt");
+        //Main.mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir/subdir","Products2.txt");
 
         //Ejercicio 9
-        Main.mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir");
+        //Main.mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Arquivosdir/subdir");
     }
 }

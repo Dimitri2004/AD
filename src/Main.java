@@ -7,18 +7,21 @@ import java.util.Objects;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        eDirectoerio("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
-        //eFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
+
+        eDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
+        eFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
         crearDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
         crearDirectorio("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
         crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "Desventaja.txt");
         crearFichero("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "advantage.txt");
-        //mEscribir("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        //mLectura("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
+        mEscribir("/home/dam/Escritorio/Kotlin/Directorios/Fichero", "Ventaja.txt");
+        mLectura("/home/dam/Escritorio/Kotlin/Directorios/Fichero", "Ventaja.txt");
         modoAcceso("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "Desventaja.txt");
-        //mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n", "Ventaja.txt");
-        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero\n");
-        //mArchivos("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
+        mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "advantage.txt");
+        //mBorrar("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas", "Desventaja.txt");
+        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
+        //mBorrarDire("/home/dam/Escritorio/Kotlin/Directorios/Fichero");
+//        mArchivos("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas");
         recur(new File("/home/dam/Escritorio/Kotlin/Directorios/Fichero/Patatas"));
 
     }
@@ -27,7 +30,7 @@ public class Main {
      * @param cadena
      * @return
      */
-    public static Boolean eDirectoerio(String cadena) {
+    public static Boolean eDirectorio(String cadena) {
         File file = new File(cadena);
 
         if (file.isDirectory()) {
@@ -62,7 +65,7 @@ public class Main {
         ruta=archivo.getPath();
         if (crea) {
             System.out.println("Creado existosamente");
-            eDirectoerio(ruta);
+            eDirectorio(ruta);
         } else {
             System.out.println("No se pudo generar");
         }
@@ -130,14 +133,18 @@ public class Main {
     }
     public static void mBorrarDire(String nomeDire) {
         File archivo= new File(nomeDire);
-        boolean borrado=archivo.delete();
-        if (borrado) {
-            System.out.println("Borrado");
-        }else if(eDirectoerio(archivo.getPath())){
-            archivo.deleteOnExit();
-        }else{
-            System.out.println("No existe el archivo");
+
+        if(eDirectorio(archivo.getPath())) {
+            boolean borrar= archivo.delete();
+            if (borrar){
+                System.out.println("Borrado");
+            }
+
         }
+        else {
+                System.out.println("No existe el archivo");
+        }
+
     }
     public static void  mArchivos(String nomeDire) {
         File archivo=new File(nomeDire);
