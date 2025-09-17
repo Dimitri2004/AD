@@ -2,8 +2,15 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+
 public class Tarea3 {
     public static void main(String[] args) throws IOException {
+        Ficheros();
+
+
+    }
+
+    public static void Ficheros() throws IOException {
         String ruta="/home/dam/Escritorio/Kotlin/Directorios/src/Texto.txt";
         String ruta2="/home/dam/Escritorio/Kotlin/Directorios/src/Texto2.txt";
         FileInputStream n=new FileInputStream(ruta);
@@ -19,8 +26,10 @@ public class Tarea3 {
                 i++;
             }
         }
-        FileOutputStream h=new FileOutputStream(ruta2);
+        FileOutputStream h=new FileOutputStream(ruta2,true);
         h.write(b);
+        h.close();
     }
+
 
 }
