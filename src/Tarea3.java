@@ -1,9 +1,37 @@
 import java.io.*;
+import java.util.Arrays;
+
+
 
 
 public class Tarea3 {
 
-    public static void  Lectura() throws IOException {
+    public static void LecturaData() throws IOException {
+        String r1="/home/dam/Escritorio/Kotlin/Directorios/src/Texto.txt";
+        String r2="/home/dam/Escritorio/Kotlin/Directorios/src/Texto3.txt";
+        int repeticiones=3;
+
+
+        FileInputStream n=new FileInputStream(r1);
+        DataInputStream n2=new DataInputStream(n);
+        FileOutputStream p=new FileOutputStream(r2);
+        DataOutputStream b=new DataOutputStream(p);
+        byte[] g= new byte[n2.available()];
+        n2.readFully(g);
+       for (int i=0;i<repeticiones;i++){
+            b.write(g);
+            b.writeByte((i+1));
+       }
+        System.out.println(repeticiones);
+
+
+
+
+    }
+
+
+
+    public static void  LecturaBuffer() throws IOException {
         String r1="/home/dam/Escritorio/Kotlin/Directorios/src/Imagen1.jpeg";
         String r2="/home/dam/Escritorio/Kotlin/Directorios/src/Imagen2.jpeg";
         FileInputStream n=new FileInputStream(r1);
@@ -58,7 +86,7 @@ public class Tarea3 {
     /** Parte2 **/
 
     public static void main(String[] args) throws IOException {
-        Lectura();
+        LecturaData();
     }
 
 
