@@ -7,25 +7,38 @@ import java.util.Arrays;
 public class Tarea3 {
 
     public static void LecturaData() throws IOException {
-        String r1="/home/dam/Escritorio/Kotlin/Directorios/src/Texto.txt";
         String r2="/home/dam/Escritorio/Kotlin/Directorios/src/Texto3.txt";
-        int repeticiones=3;
+        String texto="California free";
+        int repeticiones=4;
 
-
-        FileInputStream n=new FileInputStream(r1);
-        DataInputStream n2=new DataInputStream(n);
+        FileInputStream n1=new FileInputStream(r2);
+        DataInputStream n2=new DataInputStream(n1);
         FileOutputStream p=new FileOutputStream(r2);
         DataOutputStream b=new DataOutputStream(p);
-        byte[] g= new byte[n2.available()];
-        n2.readFully(g);
-       for (int i=0;i<repeticiones;i++){
-            b.write(g);
-            b.writeByte((i+1));
+        int i=0;
+        int calculo= 0;
+       while (i<repeticiones){
+
+           System.out.println("Texto añadido sumando espacio");
+            b.writeUTF(texto);
+            if (i==0) {
+                calculo = b.size() - texto.length();
+            }
+           System.out.println("Tamaño:"+b.size());
+           i++;
        }
-        System.out.println(repeticiones);
+       int tamañoFinal=b.size();
+        int j=0;
+        while (j<repeticiones){
+            System.out.println("Texto añadido ocupando espacio");
+            String valor=n2.readUTF();
+            int tamaño=valor.length();
 
-
-
+            int restante=tamañoFinal-tamaño-calculo;
+            tamañoFinal=restante;
+            System.out.println("Te queda: "+restante);
+            j++;
+        }
 
     }
 
